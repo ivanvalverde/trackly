@@ -1,33 +1,34 @@
+import { MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { Pressable } from "react-native";
 import DraggableFlatList, {
-    RenderItemParams,
-    ScaleDecorator,
+  RenderItemParams,
+  ScaleDecorator,
 } from "react-native-draggable-flatlist";
-import { Card, Text } from "react-native-paper";
+import { Button, Card, Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type Item = { key: string; label: string };
 const teste = [
   {
     key: "1",
-    label: "label 1",
+    label: "bloco 1",
   },
   {
     key: "2",
-    label: "label 2",
+    label: "bloco 2",
   },
   {
     key: "3",
-    label: "label 3",
+    label: "bloco 3",
   },
   {
     key: "4",
-    label: "label 4",
+    label: "bloco 4",
   },
   {
     key: "5",
-    label: "label 5",
+    label: "bloco 5",
   },
 ];
 
@@ -59,6 +60,31 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView>
+      <Button
+        style={{
+          borderWidth: 1,
+          borderColor: "black",
+          borderStyle: "dashed",
+          marginHorizontal: 24,
+          marginBottom: 16
+        }}
+        onPress={() => {}}
+        icon={() => <MaterialIcons name="add" size={22} />}
+      >
+        <Text style={{ color: "black" }}>Create simple block</Text>
+      </Button>
+      <Button
+        style={{
+          borderWidth: 1,
+          borderColor: "black",
+          borderStyle: "dashed",
+          marginHorizontal: 24,
+        }}
+        onPress={() => {}}
+        icon={() => <MaterialIcons name="add" size={22} />}
+      >
+        <Text style={{ color: "black" }}>Add custom block</Text>
+      </Button>
       <DraggableFlatList
         data={data}
         onDragEnd={({ data }) => setData(data)}

@@ -1,10 +1,13 @@
 export type TrainingRoutine = {
+  id: string;
   title: string;
   duration: number;
-  steps: TrainingStep[];
+  steps: TrainingBlock[];
 };
 
-export type TrainingStep = {
+export type TrainingBlock = {
+  id: string;
   title: string;
   duration: number;
+  simple: boolean;
 };

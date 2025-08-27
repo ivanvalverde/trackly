@@ -2,19 +2,25 @@ import { TrainingRoutineCard } from "@/components/TrainingRoutineCard";
 import { DataContext } from "@/contexts/data";
 import { TrainingRoutine } from "@/definitions/types";
 import { MaterialIcons } from "@expo/vector-icons";
+import * as Crypto from 'expo-crypto';
+import { router } from "expo-router";
 import { useContext } from "react";
 import { FlatList } from "react-native";
 import { Button, Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function HomeScreen() {
+export default function RoutinesScreen() {
   const { routines, setRoutines } = useContext(DataContext);
 
   const addRoutine = () => {
-    setRoutines((prevState) => [
-      ...prevState,
-      { title: "nova", duration: 2, steps: [] },
-    ]);
+    router.push({
+      pathname: `/(routines)/[id]`,
+      params: { id: Crypto.randomUUID() },
+    });
+    // setRoutines((prevState) => [
+    //   ...prevState,
+    //   { title: "nova", duration: 2, steps: [] },
+    // ]);
   };
 
   return (
@@ -24,12 +30,12 @@ export default function HomeScreen() {
         onPress={addRoutine}
         icon={() => <MaterialIcons name="add" size={22} />}
       >
-        <Text>Create Routine</Text>
+        <Text>Create training routine</Text>
       </Button>
       <FlatList<TrainingRoutine>
         data={routines}
         renderItem={({ item }) => (
-          <TrainingRoutineCard title={item.title} duration={item.duration}/>
+          <TrainingRoutineCard title={item.title} duration={item.duration} />
         )}
       />
     </SafeAreaView>
